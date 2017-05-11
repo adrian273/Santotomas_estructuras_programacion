@@ -19,7 +19,7 @@ reset = attr('reset')
 bold = attr('bold')
 
 print bold + colors[0] + "Ejercicio numero 3" + reset
-for i in range(1):
+for i in range(3):
     #_____________ datos de trabajadores _______________________
     print "¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨"
     name =  str(raw_input('>> ingresa nombre \n'))

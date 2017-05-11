@@ -13,7 +13,7 @@ from math import pi
 
 radio = int(input('Ingrese radio \n'))
 diametro = 2 * radio
-perimetro = 2 * radio + pi
+perimetro = 2 * radio * pi
 area = pi * radio **2
 
 print("El diametro es " + str(diametro))
