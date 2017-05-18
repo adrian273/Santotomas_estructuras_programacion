@@ -19,7 +19,7 @@ print(title.center(50, '*'))
 line = "Ingreso de datos"
 
 #  Variables
-COUNT_STUDENTS = 223  # cantidad de estudiantes
+COUNT_STUDENTS = 3  # cantidad de estudiantes
 MIN = 9999
 MAX = 0
 count_students_m = 0
@@ -34,19 +34,19 @@ for i in range(COUNT_STUDENTS):
     weight = float(input('Ingresar peso \n'))
     height = float(input('Ingresar altura \n'))
     gender = input('Ingresar genero \n')
-    if gender == 'f':
+    if gender == 'femenino':
         if MIN > age:
             # @alumna mas joven de la escuela
-            MIN = age
+            min_age = age
             name_min = name
         if weight > 45 and weight < 55:
             # @contador de alumnas que pesan entre 45 y 55 kg
             count_weight_f += 1
         # @alumnas totales
         count_f += 1
-    elif gender == 'm':
+    elif gender == 'masculino':
         if MAX < height:
-            MAX = height
+            max_height = height
             # @alumno mas alto
             name_max_height = name
         if age > 19 and age < 22:
@@ -56,9 +56,9 @@ for i in range(COUNT_STUDENTS):
 
 por_women = count_f * 100 / COUNT_STUDENTS
 prom_height = prom_height / COUNT_STUDENTS
-print('La edad menor es '+ str(MIN) + ' años de la alumna ' + name_min)
+print('La edad menor es '+ str(min_age) + ' años de la alumna ' + name_min)
 print('La cantidad de alumnos que tienen entre 19 y 22 años son ' + str(count_students_m))
 print('La cantidad de alumnas que pesan entre 45 y 55 kg son ' + str(count_weight_f))
-print('El alumno mas alto de la escuela es ' + name_max_height + ' con ' + str(MAX) + 'cm')
+print('El alumno mas alto de la escuela es ' + name_max_height + ' con ' + str(max_height) + 'cm')
 print('El porcentaje de mujeres es ' + str(por_women) + '%')
 print('El promedio de la estatura es ' + str(prom_height))
