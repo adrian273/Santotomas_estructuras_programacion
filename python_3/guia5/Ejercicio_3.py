@@ -10,7 +10,7 @@
 
 salary_count = 0
 
-for i in range(3):
+for i in range(50):
     time_work = int(input('Ingrese horas de trabajo \n'))
     value_time = int(input('Ingrese valor hora \n'))
     number_cargo = int(input('Ingrese numero de cargas \n'))
