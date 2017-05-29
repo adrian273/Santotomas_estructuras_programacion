@@ -28,7 +28,7 @@ prom_time = 0
 prom_height = 0
 prom_age = 0
 max_time = 0
-min_time = 99999
+min_age = 99999
 
 while height > 0:
     time = float(input('Ingrese tiempo: '))
@@ -38,8 +38,8 @@ while height > 0:
         female += 1
     if max_time < time:
         max_time = time
-    if min_time > time:
-        min_time = time
+    if min_age > time:
+        min_age = age
     number_person += 1  # Numero de personas que llegaron a la meta
     prom_time += time  # Para calcular el tiempo promedio de la maraton
     prom_height += height  # Para calcular estatura promedio de los participantes
@@ -60,5 +60,5 @@ print('--> El tiempo promedio de la maraton es: {:.1f}'.format(prom_time))
 print('--> El promedio de la altura es: {:.1f}'.format(prom_height))
 print('--> El promedio de la edad de los atletas es {:.1f}'.format(prom_age))
 print('--> El tiempo mayor en llegar a la meta es {}'.format(max_time))
-print('--> El tiempo menor en llegar a la meta es {} '.format(min_time))
+print('--> La edad menor es {} '.format(min_age))
 print('--> El porcentaje de mujeres que participaron en la maraton es {}%'.format(por_female))
