@@ -1,4 +1,4 @@
-'''ejercicio_6.py
+'''ejercicio_4.py
     @Description:   Hacer el codigo que Lea tres números y calcular (Número Uno POR
                     Número Uno POR Número Tres POR Número Dos) utilizando solo la suma
                     como operación.
