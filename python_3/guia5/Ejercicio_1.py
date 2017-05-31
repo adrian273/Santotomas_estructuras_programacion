@@ -9,7 +9,7 @@
 number = int(input('Ingrese numero \n'))
 result_mod = number % 2
 
-if number == 0:
+if result_mod == 0:
     # Si el numero es par se resta en 1
     number -= 1
 
