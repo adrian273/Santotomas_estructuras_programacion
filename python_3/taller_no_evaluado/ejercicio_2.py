@@ -10,7 +10,7 @@
 import os
 
 person = []
-COUNT_PERSON = 5
+COUNT_PERSON = 25
 
 def add_person():
     for i in range(COUNT_PERSON):
