@@ -11,11 +11,10 @@ def multiplication():
     number_1 = int(input('Ingrese numero: '))
     number_2 = int(input('Ingrese numero: '))
     addition = 0
-    addition_1 = 0
     for i in range(number_1):
         addition += number_2
     result = '\n El resultado es : {} \n'.format(addition)
-    print(result.center(100,'*'))
+    return result
 
 
 def factorial():
@@ -25,7 +24,7 @@ def factorial():
         fact *= number
         number -= 1
     result = '\n El factorial es {} \n'.format(fact)
-    print(result.center(100,'*'))
+    return result
 
 
 def main():
@@ -37,9 +36,9 @@ def main():
         print('3.. Salir')
         option = int(input('Ingrese su opcion: '))
         if option == 1:
-            multiplication()
+            print(multiplication().center(120, '-'))
         elif option == 2:
-            factorial()
+            print(factorial().center(100, '*'))
         elif option == 3:
             exit()
         else:
