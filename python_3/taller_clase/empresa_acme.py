@@ -14,7 +14,7 @@ from random import randint
 
 
 hour = []
-COUNT_PERSON = 5
+COUNT_PERSON = 200
 VALUE_HOUR = 1725
 
 """" @generar las horas de trabajo aleatoriamente """
