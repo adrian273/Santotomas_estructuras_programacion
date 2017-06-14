@@ -36,7 +36,6 @@ def max_renta():
     var_max_renta = 0
     for j in hour:
         renta = j * VALUE_HOUR
-        print(renta)
         if var_max_renta < renta:
             var_max_renta = renta
     return var_max_renta 
