@@ -6,14 +6,11 @@
 
 def vocal(leter):
     vocals = ['a', 'e', 'i', 'o', 'u']
-    for i in range(len(vocals)):
-        """
-            @upper = Revisa las letras mayusculas
-        """
-        if vocals[i].upper() == leter or vocals[i] == leter:
-            return True
-        else:
-            return False
+    vocals_upper = ['A', 'E', 'I', 'O', 'U']
+    if leter in vocals or leter in vocals_upper:
+        return True
+    else:
+        return False
 
 while True:
     leter = input('Ingrese un caracter: ')
