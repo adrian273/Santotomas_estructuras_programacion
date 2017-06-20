@@ -5,7 +5,7 @@
 """
 
 def inversa(word):
-    return '{}'.format(word[::-1])
+    return word[::-1]
 
 word = input('Ingresa palabra: ')
 print('La palabra invertida es: {}'.format(inversa(word)))
