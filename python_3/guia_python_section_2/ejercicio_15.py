@@ -19,12 +19,13 @@ import os
 COUNT_STUDENT = 20
 NAME_STUDENTS = [
                 'adrian', 'gonzalo', 'andres',
-                'juan', 'karen', 'alice', 'maria', 'juana'
+                'juan', 'karen', 'alice', 'maria', 'juana',
+                'jose'
                 ]
 
 SURNAME_STUDENTS = [
                     'perez', 'gonzales', 'peña', 'verdugo',
-                    'escalona', 'navarrete', 'adasme'
+                    'escalona', 'navarrete', 'adasme', 'villegas'
                     ]
 
 data_students = []
