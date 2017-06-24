@@ -8,54 +8,46 @@
             @Mostrar el alumno que mejores notas ha sacado. {sin terminar}
             @Mostrar el alumno que peores notas ha sacado. {sin terminar}
 """
-
-
-# uniform -> devuelve un numero float incluido los valores indicados.
-# choise -> develve una lista al azar string
-from random import uniform, choice
 import os
 
 
 COUNT_STUDENT = 20
-NAME_STUDENTS = [
-                'adrian', 'gonzalo', 'andres',
-                'juan', 'karen', 'alice', 'maria', 'juana',
-                'jose'
-                ]
+data_students = {
+                'adrian': '6.5', 'gonzalo': '4.2', 'andres': '5.6',
+                'juan': '1.3', 'karen': '1.2', 'alice': '7.0', 
+                'maria': '5.5', 'juana': '5.3',
+                'jose': '4.3','perez': '2.3', 'gonzales': '5.3', 
+                'peña': '4.3', 'verdugo': '5.3',
+                'escalona': '4.2', 'navarrete': '4.2', 
+                'adasme': '1.3', 'villegas': '4.3', 
+                'elliot': '1.3', 'jovina': '7.0', 'rosa': '6.9'
+                }
 
-SURNAME_STUDENTS = [
-                    'perez', 'gonzales', 'peña', 'verdugo',
-                    'escalona', 'navarrete', 'adasme', 'villegas'
-                    ]
-
-data_students = []
-
-
-def generate_data_students():
-    for i in range(COUNT_STUDENT):
-        note = uniform(1, 7)
-        name = choice(NAME_STUDENTS)
-        surname = choice(SURNAME_STUDENTS)
-        data_students.append(
-                                {
-                                    'name': '{} {}'.format(name, surname), 
-                                    'note': '{:.1F}.'.format(note)
-                                }
-                            )
-
-
+print(data_students)
 def search_students():
-    name = input('Ingrese nombre a buscar: ')
-    sub_title_1 = '\n [resultados] \n'
-    print(sub_title_1.center(80, '~'))
-    for i in data_students:
-        if name in i['name']:
-            print('{} => {} '.format(i['name'], i['note']))
+    name = input('Ingrese nombre a buscar [ingresa -A para mostrar todos]: ')
+    if name == '-A':
+        for name, note in data_students.items():
+            print("{} #=> {}".format(name, note))
+    elif name in data_students:
+        print("Nombre {}, nota {} ".format(name, data_students[name]))
+    else:
+        print("![ERROR]Este alumno no existe")
+
+
+def update_note():
+    update_note = input('Ingre alumno a editar [nota]: ')
+    if update_note in data_students:
+        print("Nota actual {} del alumno {}".format(data_students[update_note],update_note))
+        new_note = float(input('Ingrese nueva nota: '))
+        data_students[update_note] = new_note
+        print("La nueva nota es {}".format(data_students[update_note]))
+    else:
+        print("![ERROR] Alumno no encontrado...")
 
 
 def main():
-    generate_data_students()
-    options = ['1.. Buscar alumno', '5.. Salir']
+    options = ['1.. Buscar alumno', '2.. Editar nota', '5.. Salir']
     while True:
         title = '\n | Gestion de Notas | \n'
         print(title.center(80, '-'))
@@ -67,13 +59,18 @@ def main():
                 title_1 = '\n | Buscador de Alumnos | \n'
                 print(title_1.center(80, '-'))
                 search_students()
+            elif select == 2:
+                title_1 = '\n | Actualizar Nota | \n'
+                print(title_1.center(80, '-'))
+                update_note()
             elif select == 5:
+                title_1 = '\n | Adios... | \n'
+                print(title_1.center(80, '-'))
                 break
         except ValueError:
             print('![ERROR] Opcion no valida <<')
         input('::. Pesione una tecla para continuar .::')
         os.system('clear')
-
 
 if __name__ == '__main__':
     main()
