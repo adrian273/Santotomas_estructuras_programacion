@@ -4,14 +4,13 @@
             @Buscar un alumno. {ok}
             @Modificar su nota. {ok}
             @Realizar la media de todas las notas. {ok}
-            @Realizar la media de las notas menores de 5. {sin terminar}
+            @Realizar la media de las notas menores de 5. {ok}
             @Mostrar el alumno que mejores notas ha sacado. {ok}
             @Mostrar el alumno que peores notas ha sacado. {ok}
 """
 import os
 
 
-COUNT_STUDENT = 20
 data_students = {
                 'adrian': 6.5, 'gonzalo': 4.2, 'andres': 5.6,
                 'juan': 2.3, 'karen': 3.2, 'alice': 7.0, 
