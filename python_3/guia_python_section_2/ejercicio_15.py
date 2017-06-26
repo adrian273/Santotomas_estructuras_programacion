@@ -22,6 +22,7 @@ data_students = {
                 'elliot': 1.3, 'jovina': 6.9, 'rosa': 6.7
                 }
 
+
 def search_students():
     name = input('Ingrese nombre a buscar [ingresa -A para mostrar todos]: ')
     if name == '-A':
@@ -44,11 +45,23 @@ def update_note():
         print("![ERROR] Alumno no encontrado...")
 
 
-def prom_note():
+def prom_note(prom='total'):
+    """
+        Para saber el promedio total y
+        el promedio menor a 5
+    """
     count = 0
-    for i in data_students:
-        count += float(data_students[i])
-    return  count / len(data_students)
+    count_student = 0
+    if prom == 'total':
+        for i in data_students:
+            count += float(data_students[i])
+        return  count / len(data_students)
+    else:
+        for j in data_students:
+            if data_students[j] < 5.0:
+                count += data_students[j]
+                count_student += 1
+        return count / count_student
 
 
 def ranking_student(state=True):
@@ -71,7 +84,7 @@ def ranking_student(state=True):
 
 def main():
     options = ['1.. Buscar alumno', '2.. Editar nota','3.. Media de las notas', 
-                '5.. Mejor nota', '6.. Peor nota', '7.. Salir',]
+                '4.. Media notas < 5', '5.. Mejor nota', '6.. Peor nota', '7.. Salir',]
     while True:
         print(" _____            _   _                   _        _   _       _            ")
         print("/ ____|          | | (_)                 | |      | \ | |     | |           ")
@@ -95,6 +108,10 @@ def main():
                 title_1 = '\n | Media de las notas | \n'
                 print(title_1.center(80, '-'))
                 print('La media de las notas es {:.1F}'.format(prom_note()))
+            elif select == 4:
+                title_1 = '\n | Media de las notas < 5| \n'
+                print(title_1.center(80, '-'))
+                print('La media de las notas menores a 5 es {:.1F}'.format(prom_note('five')))
             elif select == 5:
                 title_1 = '\n | Mejor nota | \n'
                 print(title_1.center(80, '-'))
@@ -111,6 +128,7 @@ def main():
             print('![ERROR] Opcion no valida <<')
         input('::. Pesione una tecla para continuar .::')
         os.system('clear')
+
 
 if __name__ == '__main__':
     main()
