@@ -6,7 +6,7 @@
             @Realizar la media de todas las notas. {ok}
             @Realizar la media de las notas menores de 5. {sin terminar}
             @Mostrar el alumno que mejores notas ha sacado. {ok}
-            @Mostrar el alumno que peores notas ha sacado. {sin terminar}
+            @Mostrar el alumno que peores notas ha sacado. {ok}
 """
 import os
 
@@ -51,18 +51,27 @@ def prom_note():
     return  count / len(data_students)
 
 
-def best_note():
+def ranking_student(state=True):
+    """ @Para saber cual es el alumno que tiene mejores y peores notas """
     best_note_student =  0.0
-    for best in data_students:
-        if best_note_student < data_students[best]:
-            best_note_student = data_students[best]
-            name_alumn = best
-    return 'La mejor nota es {} del alumn@ {}'.format(best_note_student, name_alumn)
+    bad_note_student = 8.0
+    if state is not False:
+        for best in data_students:
+            if best_note_student < data_students[best]:
+                best_note_student = data_students[best]
+                name_alumn = best
+        return 'La mejor nota es {} del alumn@ {}'.format(best_note_student, name_alumn)
+    else:
+        for bad in data_students:
+            if bad_note_student > data_students[bad]:
+                bad_note_student = data_students[bad]
+                name_alumn = bad
+        return 'La peor nota es {} del alumn@ {}'.format(bad_note_student, name_alumn)
 
 
 def main():
-    options = ['1.. Buscar alumno', '2.. Editar nota',
-                '3.. Media de las notas', '5.. Mejor nota', '7.. Salir',]
+    options = ['1.. Buscar alumno', '2.. Editar nota','3.. Media de las notas', 
+                '5.. Mejor nota', '6.. Peor nota', '7.. Salir',]
     while True:
         print(" _____            _   _                   _        _   _       _            ")
         print("/ ____|          | | (_)                 | |      | \ | |     | |           ")
@@ -89,9 +98,13 @@ def main():
             elif select == 5:
                 title_1 = '\n | Mejor nota | \n'
                 print(title_1.center(80, '-'))
-                print(best_note())
+                print(ranking_student())
+            elif select == 6:
+                title_1 = '\n | Peor nota | \n'
+                print(title_1.center(80, '-'))
+                print(ranking_student(False))
             elif select == 7:
-                title_1 = '\n | Adios... | \n'
+                title_1 = '\n | Adios... | <adrianverdugo273@gmail.com> \n'
                 print(title_1.center(80, '-'))
                 break
         except ValueError:
