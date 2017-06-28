@@ -37,15 +37,16 @@ def search_rut():
     rut = input('Ingrese rut: ')
     for e in data_employee:
         if rut in e.rut and rut == e.rut:
-            print('Nombre {}, valor hora ${}, horas trabajadas {}'.format(e.name,e.value_hour, 
-                                                                            e.worked_time))
+            print('Nombre {}, valor hora ${}, horas trabajadas {}'
+                .format(e.name, e.value_hour, e.worked_time))
+
 
 def search_name():
     name = input('Ingrese nombre: ')
     for e in data_employee:
         if name in e.name and name == e.name:
-            print('Nombre {}, valor hora ${}, horas trabajadas {} '.format(e.name, e.value_hour, 
-                                                                            e.worked_time))
+            print('Nombre {}, valor hora ${}, horas trabajadas {} '
+                .format(e.name, e.value_hour, e.worked_time))
 
 def salary():
     rut = input('Ingrese rut: ')
