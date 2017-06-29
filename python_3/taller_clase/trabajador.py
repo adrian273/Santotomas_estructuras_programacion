@@ -11,6 +11,7 @@
         @Calcular sueldo de un trabajador
         @ver lista trabajadores
         @salir
+    @autor: Adrian Verdugo
 """
 import os
 
@@ -21,6 +22,7 @@ class Employee:
     name = ''
     value_hour = 0
     worked_time = 0
+    count_cargo = 0
 
 
 def add_employee():
@@ -29,30 +31,44 @@ def add_employee():
     e.rut = input('Ingrese rut: ')
     e.value_hour = int(input('Ingrese valor hora: '))
     e.worked_time = int(input('Ingrese horas trabajadas: '))
+    e.count_cargo = int(input('Ingrese numero de cargas: '))
     data_employee.append(e)
     print('[ Agregado con exito ]')
 
 
 def search_rut():
     rut = input('Ingrese rut: ')
+    search = False
     for e in data_employee:
-        if rut in e.rut and rut == e.rut:
-            print('Nombre {}, valor hora ${}, horas trabajadas {}'
-                .format(e.name, e.value_hour, e.worked_time))
+        if rut == e.rut:
+            print('Nombre {}, valor hora ${}, horas trabajadas {}, n_cargas {}'
+                .format(e.name, e.value_hour, e.worked_time, e.count_cargo))
+            search = True
+    return search
 
 
 def search_name():
     name = input('Ingrese nombre: ')
+    search = False
     for e in data_employee:
-        if name in e.name and name == e.name:
+        if name == e.name:
             print('Nombre {}, valor hora ${}, horas trabajadas {} '
                 .format(e.name, e.value_hour, e.worked_time))
+            search = True
+    return search
+
 
 def salary():
     rut = input('Ingrese rut: ')
     for e in data_employee:
         if rut in e.rut and e.rut == rut:
             salary = e.value_hour * e.worked_time
+            if e.count_cargo > 2 and e.count_cargo < 4:
+                salary * 1.1
+            elif e.count_cargo > 3:
+                salary *= 1.15
+            else:
+                salary *= 1.07
             print('Nombre {}, sueldo total ${}'.format(e.name, salary))
 
 
@@ -71,7 +87,7 @@ def main():
         print("    |_|_|  \__,_|_.__/ \__,_| |\__,_|\__,_|\___/|_|  \___||___/  ")
         print("                           _/ |                                  ")
         print("                          |__/                                   ")
-        options = ['1.. Agregar Trbajadores','2.. Buscar por rut',
+        options = ['1.. Agregar Trabajadores','2.. Buscar por rut',
                     '3.. Buscar por nombre', '4.. Salario Total', 
                     '5.. Ver lista','6.. Salir']
         for o in options:
@@ -88,14 +104,14 @@ def main():
                 else:
                     title = '\n | Buscar por rut | \n'
                     print(title.center(100, '-'))
-                    search_rut()
+                    if not search_rut(): print("![ERROR] trabajador no existe")
             elif select == 3:
                 if not data_employee:
                     print('![ERROR]::. No hay datos ingresados.::')
                 else:
                     title = '\n | Buscar por nombre | \n'
                     print(title.center(100, '-'))
-                    search_name()
+                    if not search_name(): print('![ERROR] Trabajador no existe')
             elif select == 4:
                 if not data_employee:
                     print('![ERROR]::. No hay datos ingresados.::')
@@ -114,6 +130,8 @@ def main():
                 msg = '\n | Adios ... | \n'
                 print(msg.center(100, '-'))
                 break
+            elif select == 7:
+                test()
         except ValueError:
             print ('![ERROR]:: Solo valores numericos ::.')
         input('::.Presione una tecla para continuar ::.')
