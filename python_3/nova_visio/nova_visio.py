@@ -1,8 +1,11 @@
 import os
-
+import getpass
 
 DATA_ADMIN = {'admin@nova.cl': 'admin'}
 CATEGORY_EMPLOYEE =  ['novato', 'experto', 'supervisor', 'admin']
+HEALTH_EMPLOYEE = ['a', 'b', 'c']
+DATA = []
+
 
 class DataEmployee:
 
@@ -33,7 +36,7 @@ def login():
     while True:
         email = input('Email: ')
         if email in DATA_ADMIN:
-            password = input('Contraseña: ')
+            password = getpass.getpass('Contraseña: ')
             if DATA_ADMIN[email] == password:
                 os.system('clear')
                 main()
@@ -61,27 +64,107 @@ def add_data():
         -> experto
         -> supervisor
         -> administrativo
+    @ sistemas de salud disponibles:
+        -> a
+        -> b
+        -> c
     """
+    MSG_EMPTY = '[ERROR] no hay datos que ingresar'
     data = DataEmployee()
-    data.month = input('Mes: ')
-    data.year = int(input('Año: '))
-    data.rut = input('Rut: ')
-    data.name = input('Nombre: ')
     while True:
-        category = input('Ingrese categoria [ -h para ayuda ]: ')
-        if category in CATEGORY_EMPLOYEE:
+        month = input('Mes: ')
+        if validation_empty(month):
+            print(MSG_EMPTY)
+        else:
+            data.month = month
+            break
+    while True:
+        year = input('Año: ')
+        if validation_empty(year):
+            print(MSG_EMPTY)
+        else:
+            data.year = int(year)
+            break
+    while True:
+        rut = input('Rut: ')
+        if validation_empty(rut):
+            print(MSG_EMPTY)
+        else:
+            data.rut = rut
+            break
+    while True:
+        name = input('Nombre: ')
+        if validation_empty(name):
+            print(MSG_EMPTY)
+        else:
+            data.name = name
+            break
+    while True:
+        category = input('Ingrese categoria [ h para ayuda ]: ')
+        if validation_empty(category):
+            print(MSG_EMPTY)
+        elif category in CATEGORY_EMPLOYEE:
             data.category = category
             break
-        elif category == '-h':
+        elif category == 'h':
             help_system('add_data')
         else:
             print('![ERROR] Esta categoria no existe!')
-    print(data.category)
+    while True:
+        try:
+            day_absent = int(input('Dias ausentes: '))
+            if day_absent > 30 or day_absent < 0:
+                print('[ERROR] a sobrepaso el limite << max 30')
+            else:
+                data.day_absent = day_absent
+                break
+        except ValueError:
+            print('::. ![ERROR] Solo valores numericos .::')
+    while True:
+        afp = input('AFP: ')
+        if validation_empty(afp):
+            print(MSG_EMPTY)
+        else:
+            data.afp = afp
+            break
+    while True:
+        sys_health = input('Sistema de salud: [ h para ayuda]: ')
+        if validation_empty(sys_health):
+            print(MSG_EMPTY)
+        elif sys_health in HEALTH_EMPLOYEE:
+            data.sys_health = sys_health
+            break
+        elif sys_health == 'h':
+            help_system('add_data')
+        else:
+            print('![ERROR] Este sistema no existe!')
+    while True:
+        try:
+            salary = int(input('Salario: '))
+            if salary < 0:
+                print('[ERROR] Numero negativo')
+            else:
+                data.salary = salary
+                break
+        except ValueError:
+            print('::. ![ERROR] Solo valores numericos .::')
+
 
 
 def help_system(function):
     if function == 'add_data':
         print(add_data.__doc__)
+
+
+def validation_empty(var):
+    """ 
+        Validacion si esta vacio 
+        -> strip() elimina caracteres
+    """
+    if var and var.strip():
+        return False
+    return True
+
 
 
 def main():
