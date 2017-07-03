@@ -214,8 +214,10 @@ def calculation_salary():
 def view_employee():
     title = '\n | Vista de Empleados | \n'
     print(title.center(100, '-'))
+    print('Nombre => rut => sueldo bruto => afp => salud')
+    print('_____________________________________________\n')
     for e in list_employee:
-        print('{0} => {1} => ${2} => afp=> {3} => salud[{4}]'
+        print('{0} => {1} => ${2} => {3} => {4}'
             .format(e.name, e.rut, e.salary, e.afp, e.sys_health))
 
 
