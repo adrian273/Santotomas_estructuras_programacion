@@ -176,11 +176,16 @@ def calculation_salary():
     title = '\n| Calcular Sueldo |\n'
     print(title.center(100, '-'))
     rut = input('Rut: ')
+    sub_title = '\n | Resultado | \n'
+    print(sub_title.center(100, '-'))
     for l in list_employee:
         if rut == l.rut:
+            print('Nombre: {}'.format(l.name))
+            print('Salario en bruto: ${}'
+                .format(l.salary))
             if l.afp == 'si':
                 por_afp = (l.salary/100) * 10
-                print('Descuento de AFP: ${}'
+                print('Descuento de AFP: -${}'
                         .format(por_afp))
             """" Resivar este punto """
             if l.sys_health == 'a':
@@ -190,7 +195,7 @@ def calculation_salary():
             elif  l.sys_health == 'c':
                 por = (l.salary/100) * 6.5
             # [IMPORTANT] -> Proximo a cambio!
-            print('Descuento de salud [{}]: ${}'
+            print('Descuento de salud [{}]: -${}'
                     .format(l.sys_health, por))
             # Preguntar sobre duda del sueldo bruto
             if l.day_absent == 0 and l.category == 'experto':
@@ -201,9 +206,17 @@ def calculation_salary():
                 salary_bono = l.salary
             print('Salario + Bono: {}'.format(salary_bono))
             salary_total = salary_bono - (por_afp + por)
-            print('Salario Total ${}'.format(salary_total))
+            print('Salario Total: ${}'.format(salary_total))
             return True
     return False
+
+
+def view_employee():
+    title = '\n | Vista de Empleados | \n'
+    print(title.center(100, '-'))
+    for e in list_employee:
+        print('{0} => {1} => ${2} => afp=> {3} => salud[{4}]'
+            .format(e.name, e.rut, e.salary, e.afp, e.sys_health))
 
 
 def main():
@@ -229,8 +242,7 @@ def main():
                 if not calculation_salary():
                     print("![ERROR] trabajador no registrado")
             elif select == 3:
-                #view_employee()
-                pass
+                view_employee()
             elif select == 5:
                 break
         except ValueError:
