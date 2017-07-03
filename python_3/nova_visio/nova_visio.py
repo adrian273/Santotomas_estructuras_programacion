@@ -1,10 +1,10 @@
 import os
 import getpass
 
-DATA_ADMIN = {'admin@nova.cl': 'admin'}
+DATA_ADMIN = {'a': 'a'}
 CATEGORY_EMPLOYEE =  ['novato', 'experto', 'supervisor', 'admin']
 HEALTH_EMPLOYEE = ['a', 'b', 'c']
-DATA = []
+list_employee = []
 
 
 class DataEmployee:
@@ -114,19 +114,23 @@ def add_data():
         try:
             day_absent = int(input('Dias ausentes: '))
             if day_absent > 30 or day_absent < 0:
-                print('[ERROR] a sobrepaso el limite << max 30')
+                print('[ERROR] a sobrepaso el limite << min 0 - max 30')
             else:
                 data.day_absent = day_absent
-                break
+            break
         except ValueError:
             print('::. ![ERROR] Solo valores numericos .::')
     while True:
         afp = input('AFP: ')
         if validation_empty(afp):
             print(MSG_EMPTY)
-        else:
+        elif afp == 'si':
             data.afp = afp
             break
+        elif afp == 'no':
+            pass
+        else:
+            print('[ERROR] Valor ingresado incorrecto')
     while True:
         sys_health = input('Sistema de salud: [ h para ayuda]: ')
         if validation_empty(sys_health):
@@ -148,6 +152,7 @@ def add_data():
                 break
         except ValueError:
             print('::. ![ERROR] Solo valores numericos .::')
+    list_employee.append(data)
 
 
 
@@ -165,6 +170,40 @@ def validation_empty(var):
         return False
     return True
 
+
+def calculation_salary():
+    bono = 50000
+    title = '\n| Calcular Sueldo |\n'
+    print(title.center(100, '-'))
+    rut = input('Rut: ')
+    for l in list_employee:
+        if rut == l.rut:
+            if l.afp == 'si':
+                por_afp = (l.salary/100) * 10
+                print('Descuento de AFP: ${}'
+                        .format(por_afp))
+            """" Resivar este punto """
+            if l.sys_health == 'a':
+                por = (l.salary/100) * 5.7
+            elif l.sys_health == 'b':
+                por = (l.salary/100) * 6.1
+            elif  l.sys_health == 'c':
+                por = (l.salary/100) * 6.5
+            # [IMPORTANT] -> Proximo a cambio!
+            print('Descuento de salud [{}]: ${}'
+                    .format(l.sys_health, por))
+            # Preguntar sobre duda del sueldo bruto
+            if l.day_absent == 0 and l.category == 'experto':
+                salary_bono = l.salary + (bono*2)
+            elif l.day_absent == 0:
+                salary_bono = l.salary + bono
+            else:
+                salary_bono = l.salary
+            print('Salario + Bono: {}'.format(salary_bono))
+            salary_total = salary_bono - (por_afp + por)
+            print('Salario Total ${}'.format(salary_total))
+            return True
+    return False
 
 
 def main():
@@ -186,6 +225,12 @@ def main():
             select = int(input('Ingresa tu opcion: '))
             if select == 1:
                 add_data()
+            elif select == 2:
+                if not calculation_salary():
+                    print("![ERROR] trabajador no registrado")
+            elif select == 3:
+                #view_employee()
+                pass
             elif select == 5:
                 break
         except ValueError:
