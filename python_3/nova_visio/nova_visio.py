@@ -18,7 +18,7 @@ class DataEmployee:
     afp = ''
     sys_health = ''  # sistema de salud => [a, b, c]
     salary = 0  #  monto en sueldo bruto
-    
+
 
 def login():
     print(" _                 _       ")
@@ -57,7 +57,7 @@ def login():
 
 
 def add_data():
-    """ 
+    """
     Agregar datos de los trabajadores:
     @ Categorias Disponibles:
         -> novato
@@ -124,11 +124,9 @@ def add_data():
         afp = input('AFP: ')
         if validation_empty(afp):
             print(MSG_EMPTY)
-        elif afp == 'si':
+        elif afp == 'si' or afp == 'no':
             data.afp = afp
             break
-        elif afp == 'no':
-            pass
         else:
             print('[ERROR] Valor ingresado incorrecto')
     while True:
@@ -162,8 +160,8 @@ def help_system(function):
 
 
 def validation_empty(var):
-    """ 
-        Validacion si esta vacio 
+    """
+        Validacion si esta vacio
         -> strip() elimina caracteres
     """
     if var and var.strip():
@@ -180,13 +178,10 @@ def calculation_salary():
     print(sub_title.center(100, '-'))
     for l in list_employee:
         if rut == l.rut:
-            print('Nombre: {}'.format(l.name))
-            print('Salario en bruto: ${}'
-                .format(l.salary))
             if l.afp == 'si':
                 por_afp = (l.salary/100) * 10
-                print('Descuento de AFP: -${}'
-                        .format(por_afp))
+            else:
+                por_afp = 0
             """" Resivar este punto """
             if l.sys_health == 'a':
                 por = (l.salary/100) * 5.7
@@ -194,9 +189,6 @@ def calculation_salary():
                 por = (l.salary/100) * 6.1
             elif  l.sys_health == 'c':
                 por = (l.salary/100) * 6.5
-            # [IMPORTANT] -> Proximo a cambio!
-            print('Descuento de salud [{}]: -${}'
-                    .format(l.sys_health, por))
             # Preguntar sobre duda del sueldo bruto
             if l.day_absent == 0 and l.category == 'experto':
                 salary_bono = l.salary + (bono*2)
@@ -204,8 +196,16 @@ def calculation_salary():
                 salary_bono = l.salary + bono
             else:
                 salary_bono = l.salary
-            print('Salario + Bono: {}'.format(salary_bono))
             salary_total = salary_bono - (por_afp + por)
+            print('Nombre: {}'.format(l.name))
+            print('Salario en bruto: ${}'
+                .format(l.salary))
+            print('Descuento de AFP: ${}'
+                    .format(por_afp))
+            # [IMPORTANT] -> Proximo a cambio!
+            print('Descuento de salud [{}]: ${}'
+                    .format(l.sys_health, por))
+            print('Salario + Bono: {}'.format(salary_bono))
             print('Salario Total: ${}'.format(salary_total))
             return True
     return False
@@ -220,8 +220,8 @@ def view_employee():
 
 
 def main():
-    OPTIONS = ['1.. Ingresar datos', '2.. Calcular sueldo', 
-                '3.. Mostrar Empleados ', '4.. Mostrar liquidaciones', 
+    OPTIONS = ['1.. Ingresar datos', '2.. Calcular sueldo',
+                '3.. Mostrar Empleados ', '4.. Mostrar liquidaciones',
                 '5.. Salir']
     while True:
         print("                -> Bienvenido <-                ")

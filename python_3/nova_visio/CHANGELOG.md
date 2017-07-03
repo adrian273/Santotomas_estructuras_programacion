@@ -5,6 +5,10 @@
 ### Added
 - Calcular sueldo de trabajadores con descuentos
 - Ver trabajadores
+### Changed
+- Cambio de orden de impresion en calculacion de sueldo
+### Fixed
+- Arreglado error con AFP
 
 
 ## [0.0.2] - 2017-07-01
