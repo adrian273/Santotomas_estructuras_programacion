@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.4] - 2017-07-04
+### Added
+- agregado mes del año
+### Changed
+- Cambio en validacion de mes
 
 ## [0.0.3] - 2017-07-03
 ### Added
@@ -7,6 +12,7 @@
 - Ver trabajadores
 ### Changed
 - Cambio de orden de impresion en calculacion de sueldo
+- Cambio en vista de los trabajadores
 ### Fixed
 - Arreglado error con AFP
 

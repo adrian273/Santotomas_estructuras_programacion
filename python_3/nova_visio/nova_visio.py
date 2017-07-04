@@ -4,6 +4,11 @@ import getpass
 DATA_ADMIN = {'a': 'a'}
 CATEGORY_EMPLOYEE =  ['novato', 'experto', 'supervisor', 'admin']
 HEALTH_EMPLOYEE = ['a', 'b', 'c']
+MONTH = ['enero', 'febrero', 'marzo', 'abril',
+            'mayo', 'junio', 'julio', 'agosto',
+            'septiembre', 'octubre', 'noviembre',
+            'diciembre'
+        ]
 list_employee = []
 
 
@@ -75,9 +80,11 @@ def add_data():
         month = input('Mes: ')
         if validation_empty(month):
             print(MSG_EMPTY)
-        else:
+        elif month in MONTH:
             data.month = month
             break
+        else:
+            print('[ERROR] Mes invalido !')
     while True:
         year = input('Año: ')
         if validation_empty(year):
