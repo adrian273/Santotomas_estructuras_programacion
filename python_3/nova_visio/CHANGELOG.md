@@ -4,28 +4,30 @@
 ### Added
 - agregado mes del año
 ### Changed
-- Cambio en validacion de mes
+- Cambio en validacion de mes.
+- Cambio en entrada de login, se pasan parametros en su funcion.
+- Cambio en calculacion de salario, agregado mes para distinguir a mas de un trabajador.
 
 ## [0.0.3] - 2017-07-03
 ### Added
-- Calcular sueldo de trabajadores con descuentos
-- Ver trabajadores
+- Calcular sueldo de trabajadores con descuentos.
+- Ver trabajadores.
 ### Changed
-- Cambio de orden de impresion en calculacion de sueldo
-- Cambio en vista de los trabajadores
+- Cambio de orden de impresion en calculacion de sueldo.
+- Cambio en vista de los trabajadores.
 ### Fixed
-- Arreglado error con AFP
+- Arreglado error con AFP.
 
 
 ## [0.0.2] - 2017-07-01
 ### Added
-- Agregado datos de trabajadores
-- Agregado menu de NovaVio
-- Agregado validaciones al ingreso de trabajadores
+- Agregado datos de trabajadores.
+- Agregado menu de NovaVio.
+- Agregado validaciones al ingreso de trabajadores.
 ### Changed
 - agregado getpass en vez de un input normal.
 
 
 ## [0.0.1] - 2017-06-30
 ### Added
-- Agregado login de usuario
+- Agregado login de usuario.

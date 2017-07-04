@@ -1,13 +1,12 @@
 import os
 import getpass
 
-DATA_ADMIN = {'a': 'a'}
 CATEGORY_EMPLOYEE =  ['novato', 'experto', 'supervisor', 'admin']
 HEALTH_EMPLOYEE = ['a', 'b', 'c']
-MONTH = ['enero', 'febrero', 'marzo', 'abril',
-            'mayo', 'junio', 'julio', 'agosto',
-            'septiembre', 'octubre', 'noviembre',
-            'diciembre'
+MONTH = ['enero', 'febrero', 'marzo', 
+            'abril','mayo', 'junio', 'julio', 
+            'agosto', 'septiembre', 'octubre', 
+            'noviembre', 'diciembre'
         ]
 list_employee = []
 
@@ -25,7 +24,7 @@ class DataEmployee:
     salary = 0  #  monto en sueldo bruto
 
 
-def login():
+def login(DATA_ADMIN={None:None}):
     print(" _                 _       ")
     print("| |               (_)      ")
     print("| |     ___   __ _ _ _ __  ")
@@ -181,10 +180,13 @@ def calculation_salary():
     title = '\n| Calcular Sueldo |\n'
     print(title.center(100, '-'))
     rut = input('Rut: ')
+    month = input('Mes: ')
     sub_title = '\n | Resultado | \n'
     print(sub_title.center(100, '-'))
     for l in list_employee:
-        if rut == l.rut:
+        if month not in MONTH:
+            print('![ERROR] * Ingreso de mes incorrecto ')
+        elif rut == l.rut and month in MONTH and month == l.month:
             if l.afp == 'si':
                 por_afp = (l.salary/100) * 10
             else:
@@ -249,7 +251,7 @@ def main():
                 add_data()
             elif select == 2:
                 if not calculation_salary():
-                    print("![ERROR] trabajador no registrado")
+                    print("![ERROR] No se encuentra en el registro")
             elif select == 3:
                 view_employee()
             elif select == 5:
@@ -261,4 +263,4 @@ def main():
 
 
 if __name__ == '__main__':
-    login()
+    login({'nova@visio.cl':'admin'})
