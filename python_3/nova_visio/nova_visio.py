@@ -1,5 +1,4 @@
 import os
-import getpass
 
 CATEGORY_EMPLOYEE = ['novato', 'experto', 'supervisor', 'admin']
 HEALTH_EMPLOYEE = ['a', 'b', 'c']
@@ -40,9 +39,9 @@ def login(DATA_ADMIN={None: None}):
     while True:
         email = input('Email: ')
         if email in DATA_ADMIN:
-            password = getpass.getpass('Contraseña: ')
+            password = input('Contraseña: ')
             if DATA_ADMIN[email] == password:
-                os.system('clear')
+                clear()
                 main()
                 break
             else:
@@ -160,6 +159,7 @@ def add_data():
 
 
 def help_system(function):
+    """ Para ayudar a ingresar datos, entre otros  (Ayudas)"""
     if function == 'add_data':
         print(add_data.__doc__)
 
@@ -175,6 +175,7 @@ def validation_empty(var):
 
 
 def calculation_salary():
+    """ Calcular Salario del trabajador ingresando su mes"""
     bono = 50000
     title = '\n| Calcular Sueldo |\n'
     print(title.center(100, '-'))
@@ -217,6 +218,7 @@ def calculation_salary():
 
 
 def view_employee():
+    """ Listar Empleados """
     title = '\n | Vista de Empleados | \n'
     print(title.center(100, '-'))
     print('Nombre => rut => sueldo bruto => afp => salud')
@@ -227,6 +229,7 @@ def view_employee():
 
 
 def data_employee_main():
+    """ Menu de listar liquidaciones """
     options = ['1.. Por mes - año', '2.. Por Rut', '3.. Salir']
     while True:
         for o in options:
@@ -244,7 +247,14 @@ def data_employee_main():
         except ValueError:
             print('[ERROR] Solo valores numericos')
         input('[]Presiona')
+        clear()
+
+
+def clear():
+    if os.name == 'posix':
         os.system('clear')
+    elif os.name in ('nt', 'dos', 'ce'):
+        os.system('cls')
 
 
 def main():
@@ -278,8 +288,8 @@ def main():
         except ValueError:
             print('[ERROR] Solo valores numericos: ')
         input('Presione una tecla para continuar []')
-        os.system('clear')
+        clear()
 
 
 if __name__ == '__main__':
-    login({'nova@visio.cl': 'admin'})
+    login({'admin@nova.cl': 'admin'})

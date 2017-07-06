@@ -1,7 +1,14 @@
 # Changelog
 
 
-## [0.0.5]
+## [0.5.0] - 2017-07-06
+### Changed
+- Cambio de getpass a input normal
+### Fixed
+- cambio en limpiar pantalla consola (Funciona en window ahora)
+
+
+## [0.0.5] - 2017-07-05
 ### Added
 - agregado menu de liquidaciones
 
