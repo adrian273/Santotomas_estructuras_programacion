@@ -1,11 +1,11 @@
 import os
 import getpass
 
-CATEGORY_EMPLOYEE =  ['novato', 'experto', 'supervisor', 'admin']
+CATEGORY_EMPLOYEE = ['novato', 'experto', 'supervisor', 'admin']
 HEALTH_EMPLOYEE = ['a', 'b', 'c']
-MONTH = ['enero', 'febrero', 'marzo', 
-            'abril','mayo', 'junio', 'julio', 
-            'agosto', 'septiembre', 'octubre', 
+MONTH = ['enero', 'febrero', 'marzo',
+            'abril', 'mayo', 'junio', 'julio',
+            'agosto', 'septiembre', 'octubre',
             'noviembre', 'diciembre'
         ]
 list_employee = []
@@ -21,10 +21,10 @@ class DataEmployee:
     day_absent = 0
     afp = ''
     sys_health = ''  # sistema de salud => [a, b, c]
-    salary = 0  #  monto en sueldo bruto
+    salary = 0  # monto en sueldo bruto
 
 
-def login(DATA_ADMIN={None:None}):
+def login(DATA_ADMIN={None: None}):
     print(" _                 _       ")
     print("| |               (_)      ")
     print("| |     ___   __ _ _ _ __  ")
@@ -159,7 +159,6 @@ def add_data():
     list_employee.append(data)
 
 
-
 def help_system(function):
     if function == 'add_data':
         print(add_data.__doc__)
@@ -188,19 +187,17 @@ def calculation_salary():
             print('![ERROR] * Ingreso de mes incorrecto ')
         elif rut == l.rut and month in MONTH and month == l.month:
             if l.afp == 'si':
-                por_afp = (l.salary/100) * 10
+                por_afp = (l.salary / 100) * 10
             else:
                 por_afp = 0
-            """" Resivar este punto """
             if l.sys_health == 'a':
-                por = (l.salary/100) * 5.7
+                por = (l.salary / 100) * 5.7
             elif l.sys_health == 'b':
-                por = (l.salary/100) * 6.1
+                por = (l.salary / 100) * 6.1
             elif  l.sys_health == 'c':
-                por = (l.salary/100) * 6.5
-            # Preguntar sobre duda del sueldo bruto
+                por = (l.salary / 100) * 6.5
             if l.day_absent == 0 and l.category == 'experto':
-                salary_bono = l.salary + (bono*2)
+                salary_bono = l.salary + (bono * 2)
             elif l.day_absent == 0:
                 salary_bono = l.salary + bono
             else:
@@ -211,7 +208,6 @@ def calculation_salary():
                 .format(l.salary))
             print('Descuento de AFP: ${}'
                     .format(por_afp))
-            # [IMPORTANT] -> Proximo a cambio!
             print('Descuento de salud [{}]: ${}'
                     .format(l.sys_health, por))
             print('Salario + Bono: {}'.format(salary_bono))
@@ -228,6 +224,27 @@ def view_employee():
     for e in list_employee:
         print('{0} => {1} => ${2} => {3} => {4}'
             .format(e.name, e.rut, e.salary, e.afp, e.sys_health))
+
+
+def data_employee_main():
+    options = ['1.. Por mes - año', '2.. Por Rut', '3.. Salir']
+    while True:
+        for o in options:
+            print(o)
+        try:
+            select = int(input('Opcion: '))
+            if select == 1:
+                pass
+            elif select == 2:
+                pass
+            elif  3:
+                break
+            else:
+                print('![ERROR] Opcion no disponible')
+        except ValueError:
+            print('[ERROR] Solo valores numericos')
+        input('[]Presiona')
+        os.system('clear')
 
 
 def main():
@@ -254,6 +271,8 @@ def main():
                     print("![ERROR] No se encuentra en el registro")
             elif select == 3:
                 view_employee()
+            elif select == 4:
+                data_employee_main()
             elif select == 5:
                 break
         except ValueError:
@@ -263,4 +282,4 @@ def main():
 
 
 if __name__ == '__main__':
-    login({'nova@visio.cl':'admin'})
+    login({'nova@visio.cl': 'admin'})

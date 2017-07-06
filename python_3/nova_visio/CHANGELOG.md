@@ -1,5 +1,11 @@
 # Changelog
 
+
+## [0.0.5]
+### Added
+- agregado menu de liquidaciones
+
+
 ## [0.0.4] - 2017-07-04
 ### Added
 - agregado mes del año
@@ -7,6 +13,7 @@
 - Cambio en validacion de mes.
 - Cambio en entrada de login, se pasan parametros en su funcion.
 - Cambio en calculacion de salario, agregado mes para distinguir a mas de un trabajador.
+
 
 ## [0.0.3] - 2017-07-03
 ### Added
