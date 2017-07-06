@@ -240,7 +240,7 @@ def data_employee_main():
                 pass
             elif select == 2:
                 pass
-            elif  3:
+            elif select == 3:
                 break
             else:
                 print('![ERROR] Opcion no disponible')
