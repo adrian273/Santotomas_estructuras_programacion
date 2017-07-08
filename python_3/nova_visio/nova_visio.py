@@ -1,17 +1,17 @@
 import os
 
-CATEGORY_EMPLOYEE = ['novato', 'experto', 'supervisor', 'admin']
+CATEGORY_EMPLOYEE = ['novato', 'experto', 'supervisor', 'administrativo']
 HEALTH_EMPLOYEE = ['a', 'b', 'c']
 MONTH = ['enero', 'febrero', 'marzo',
-            'abril', 'mayo', 'junio', 'julio',
-            'agosto', 'septiembre', 'octubre',
-            'noviembre', 'diciembre'
-        ]
+         'abril', 'mayo', 'junio', 'julio',
+         'agosto', 'septiembre', 'octubre',
+         'noviembre', 'diciembre'
+         ]
 list_employee = []
 
 
 class DataEmployee:
-
+    
     month = ''
     year = 0
     rut = ''
@@ -122,7 +122,7 @@ def add_data():
                 print('[ERROR] a sobrepaso el limite << min 0 - max 30')
             else:
                 data.day_absent = day_absent
-            break
+                break
         except ValueError:
             print('::. ![ERROR] Solo valores numericos .::')
     while True:
@@ -165,11 +165,8 @@ def help_system(function):
 
 
 def validation_empty(var):
-    """
-        Validacion si esta vacio
-        -> strip() elimina caracteres
-    """
-    if var and var.strip():
+    """ Validacion si esta vacio """
+    if len(var) != 0:
         return False
     return True
 
@@ -195,7 +192,7 @@ def calculation_salary():
                 por = (l.salary / 100) * 5.7
             elif l.sys_health == 'b':
                 por = (l.salary / 100) * 6.1
-            elif  l.sys_health == 'c':
+            elif l.sys_health == 'c':
                 por = (l.salary / 100) * 6.5
             if l.day_absent == 0 and l.category == 'experto':
                 salary_bono = l.salary + (bono * 2)
@@ -206,11 +203,11 @@ def calculation_salary():
             salary_total = salary_bono - (por_afp + por)
             print('Nombre: {}'.format(l.name))
             print('Salario en bruto: ${}'
-                .format(l.salary))
+                  .format(l.salary))
             print('Descuento de AFP: ${}'
-                    .format(por_afp))
+                  .format(por_afp))
             print('Descuento de salud [{}]: ${}'
-                    .format(l.sys_health, por))
+                  .format(l.sys_health, por))
             print('Salario + Bono: {}'.format(salary_bono))
             print('Salario Total: ${}'.format(salary_total))
             return True
@@ -225,7 +222,7 @@ def view_employee():
     print('_____________________________________________\n')
     for e in list_employee:
         print('{0} => {1} => ${2} => {3} => {4}'
-            .format(e.name, e.rut, e.salary, e.afp, e.sys_health))
+              .format(e.name, e.rut, e.salary, e.afp, e.sys_health))
 
 
 def data_employee_main():
@@ -259,8 +256,8 @@ def clear():
 
 def main():
     OPTIONS = ['1.. Ingresar datos', '2.. Calcular sueldo',
-                '3.. Mostrar Empleados ', '4.. Mostrar liquidaciones',
-                '5.. Salir']
+               '3.. Mostrar Empleados ', '4.. Mostrar liquidaciones',
+               '5.. Salir']
     while True:
         print("                -> Bienvenido <-                ")
         print("  _   _              __      ___  _____ _       ")

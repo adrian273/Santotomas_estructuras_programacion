@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.6.0] - 2017-07-08
+### Changed
+- Cambio en validacion de campos vacios
 
 ## [0.5.0] - 2017-07-06
 ### Changed
