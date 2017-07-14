@@ -72,6 +72,8 @@ def add_data():
         -> b
         -> c
     """
+    title = '\n | Agregar Datos | \n'
+    print(title.center(100, '-'))
     MSG_EMPTY = '[ERROR] no hay datos que ingresar'
     data = DataEmployee()
     while True:
@@ -166,51 +168,121 @@ def help_system(function):
 
 def validation_empty(var):
     """ Validacion si esta vacio """
-    if len(var) != 0:
+    if var and var.strip():
         return False
     return True
 
 
-def calculation_salary():
+def calculation_salary(rut=None, month=None, year=None):
     """ Calcular Salario del trabajador ingresando su mes"""
     bono = 50000
     title = '\n| Calcular Sueldo |\n'
     print(title.center(100, '-'))
-    rut = input('Rut: ')
-    month = input('Mes: ')
-    sub_title = '\n | Resultado | \n'
-    print(sub_title.center(100, '-'))
-    for l in list_employee:
-        if month not in MONTH:
-            print('![ERROR] * Ingreso de mes incorrecto ')
-        elif rut == l.rut and month in MONTH and month == l.month:
-            if l.afp == 'si':
-                por_afp = (l.salary / 100) * 10
-            else:
-                por_afp = 0
-            if l.sys_health == 'a':
-                por = (l.salary / 100) * 5.7
-            elif l.sys_health == 'b':
-                por = (l.salary / 100) * 6.1
-            elif l.sys_health == 'c':
-                por = (l.salary / 100) * 6.5
-            if l.day_absent == 0 and l.category == 'experto':
-                salary_bono = l.salary + (bono * 2)
-            elif l.day_absent == 0:
-                salary_bono = l.salary + bono
-            else:
-                salary_bono = l.salary
-            salary_total = salary_bono - (por_afp + por)
-            print('Nombre: {}'.format(l.name))
-            print('Salario en bruto: ${}'
-                  .format(l.salary))
-            print('Descuento de AFP: ${}'
-                  .format(por_afp))
-            print('Descuento de salud [{}]: ${}'
-                  .format(l.sys_health, por))
-            print('Salario + Bono: {}'.format(salary_bono))
-            print('Salario Total: ${}'.format(salary_total))
-            return True
+    if rut is None and month is None:
+        rut = input('Rut: ')
+        month = input('Mes: ')
+        sub_title = '\n | Resultado | \n'
+        print(sub_title.center(100, '-'))
+        for l in list_employee:
+            if month not in MONTH:
+                print('![ERROR] * Ingreso de mes incorrecto ')
+                return False
+            elif rut == l.rut and month in MONTH and month == l.month:
+                if l.afp == 'si':
+                    por_afp = (l.salary / 100) * 10
+                else:
+                    por_afp = 0
+                if l.sys_health == 'a':
+                    por = (l.salary / 100) * 5.7
+                elif l.sys_health == 'b':
+                    por = (l.salary / 100) * 6.1
+                elif l.sys_health == 'c':
+                    por = (l.salary / 100) * 6.5
+                if l.day_absent == 0 and l.category == 'experto':
+                    salary_bono = l.salary + (bono * 2)
+                elif l.day_absent == 0:
+                    salary_bono = l.salary + bono
+                else:
+                    salary_bono = l.salary
+                salary_total = salary_bono - (por_afp + por)
+                print('Nombre: {}'.format(l.name))
+                print('Salario en bruto: ${}'
+                    .format(l.salary))
+                print('Descuento de AFP: ${}'
+                    .format(por_afp))
+                print('Descuento de salud [{}]: ${}'
+                    .format(l.sys_health, por))
+                print('Salario + Bono: {}'.format(salary_bono))
+                print('Salario Total: ${}'.format(salary_total))
+                return True
+    elif rut and month is None and year is None:
+        for s_rut in list_employee:
+            if rut == s_rut.rut:
+                if s_rut.afp == 'si':
+                    por_afp = (s_rut.salary / 100) * 10        
+                else:
+                    por_afp = 0    
+                if s_rut.sys_health == 'a':
+                    por = (s_rut.salary / 100) * 5.7
+                elif s_rut.sys_health == 'b':
+                    por = (s_rut.salary / 100) * 6.1
+                elif s_rut.sys_health == 'c':
+                    por = (s_rut.salary / 100) * 6.5
+                if s_rut.day_absent == 0 and s_rut.category == 'experto':
+                    salary_bono = s_rut.salary + (bono * 2)
+                elif s_rut.day_absent == 0:
+                    salary_bono = s_rut.salary + bono
+                else:
+                    salary_bono = s_rut.salary
+                salary_total = salary_bono - (por_afp + por)
+                print('Nombre: {}'.format(s_rut.name))
+                print('Salario en bruto: ${}'
+                    .format(s_rut.salary))
+                print('Descuento de AFP: ${}'
+                    .format(por_afp))
+                print('Descuento de salud [{}]: ${}'
+                    .format(s_rut.sys_health, por))
+                print('Salario + Bono: {}'.format(salary_bono))
+                print('Salario Total: ${}'.format(salary_total))
+                print('Mes: {}'.format(s_rut.month))
+                print('---------------------------------------')
+        return True
+    elif rut is None and month and year:
+        for s_my in list_employee:
+            if month not in MONTH:
+                print('![ERROR] * Ingreso de mes incorrecto ')
+                return False
+            elif month == s_my.month and year == s_my.year:
+                if s_my.afp == 'si':
+                    por_afp = (s_my.salary / 100) * 10        
+                else:
+                    por_afp = 0    
+                if s_my.sys_health == 'a':
+                    por = (s_my.salary / 100) * 5.7
+                elif s_my.sys_health == 'b':
+                    por = (s_my.salary / 100) * 6.1
+                elif s_my.sys_health == 'c':
+                    por = (s_my.salary / 100) * 6.5
+                if s_my.day_absent == 0 and s_my.category == 'experto':
+                    salary_bono = s_my.salary + (bono * 2)
+                elif s_my.day_absent == 0:
+                    salary_bono = s_my.salary + bono
+                else:
+                    salary_bono = s_my.salary
+                salary_total = salary_bono - (por_afp + por)
+                print('Nombre: {}'.format(s_my.name))
+                print('Salario en bruto: ${}'
+                    .format(s_my.salary))
+                print('Descuento de AFP: ${}'
+                    .format(por_afp))
+                print('Descuento de salud [{}]: ${}'
+                    .format(s_my.sys_health, por))
+                print('Salario + Bono: {}'.format(salary_bono))
+                print('Salario Total: ${}'.format(salary_total))
+                print('Mes: {}'.format(s_my.month))
+                print('año: {}'.format(s_my.year))
+                print('---------------------------------------')
+        return True
     return False
 
 
@@ -229,20 +301,30 @@ def data_employee_main():
     """ Menu de listar liquidaciones """
     options = ['1.. Por mes - año', '2.. Por Rut', '3.. Salir']
     while True:
+        title = '\n | Menu de liquidaciones | \n'
+        print(title.center(100, '-'))
         for o in options:
             print(o)
         try:
             select = int(input('Opcion: '))
             if select == 1:
-                pass
+                month = input('Mes: ')
+                year = int(input('Año: '))
+                if validation_empty(month):
+                    print('![ERROR] Campo vacio!')
+                elif not calculation_salary(None, month, year):
+                    print('![ERROR] no se encuentra el registro')
             elif select == 2:
-                pass
+                rut = input('Rut: ')
+                if validation_empty(rut):
+                    print('![ERROR] Campo vacio!')
+                if not calculation_salary(rut): print('![ERROR] no se encuentra el registro')
             elif select == 3:
                 break
             else:
                 print('![ERROR] Opcion no disponible')
         except ValueError:
-            print('[ERROR] Solo valores numericos')
+            print('[ERROR] Tipo de dato incorrecto!')
         input('[]Presiona')
         clear()
 
@@ -289,4 +371,4 @@ def main():
 
 
 if __name__ == '__main__':
-    login({'admin@nova.cl': 'admin'})
+    login({'a': 'a'})

@@ -1,8 +1,19 @@
 # Changelog
 
+
+## [0.9.0] - 2017-07-14
+### Added
+- Agregado Liquidaciones, mes-año & rut
+### Changed
+- Cambio en la manera de mostrar la informacion del salario
+### Fixed
+- Campos vacios
+
+
 ## [0.6.0] - 2017-07-08
 ### Changed
 - Cambio en validacion de campos vacios
+
 
 ## [0.5.0] - 2017-07-06
 ### Changed
